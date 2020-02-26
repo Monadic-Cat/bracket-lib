@@ -1,5 +1,4 @@
 use crate::prelude::RandomNumberGenerator;
-use std::convert::TryInto;
 use core::iter::Iterator;
 
 pub struct DiceIterator<'a> {
@@ -9,9 +8,9 @@ pub struct DiceIterator<'a> {
 
 impl<'a> DiceIterator<'a> {
     pub fn new<T>(die_type : T, rng : &'a mut RandomNumberGenerator) -> Self
-    where T: TryInto<i32>
+    where T: Into<i32>
     {
-        let dt = die_type.try_into().ok().unwrap();
+        let dt = die_type.into();
         Self {
             die_type : dt,
             rng
